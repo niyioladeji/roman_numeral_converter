@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RomanNumeralConverterServiceTest {
@@ -21,6 +20,20 @@ public class RomanNumeralConverterServiceTest {
     @Test
     void testGetRomanNumeralForInteger() {
         fail("PlaceHolder test");
+    }
+    @Test
+    @DisplayName("null should throw exception")
+    void testGetRomanUnitForNull() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanUnit(null));
+        assertEquals("Number can't be null", exception.getMessage());
+    }
+    @Test
+    @DisplayName("test that length of input string is 1")
+    void testGetRomanUnitForNonSingularString() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanUnit("11"));
+        assertEquals("Number length must be 1", exception.getMessage());
     }
     @Test
     @DisplayName("0 (integer zero) should return empty string")
