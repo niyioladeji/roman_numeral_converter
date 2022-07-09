@@ -102,20 +102,39 @@ public class RomanNumeralConverterServiceTest {
         assertEquals("XC", romanNumeralConverterService.getRomanTenth("9"));
     }
     @Test
+    @DisplayName("test values that is null OR outside of 0 - 9")
+    void testInvalidGetRomanHundredth() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanHundredth(null));
+        assertEquals("Number can't be null", exception.getMessage());
+        Throwable exception1 = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanHundredth("11"));
+        assertEquals("Number value must be 0 - 9", exception1.getMessage());
+    }
+    @Test
+    void testGetZeroRomanHundredth() {
+        assertEquals("", romanNumeralConverterService.getRomanHundredth("0"));
+    }
+    @Test
     void testGetRomanHundredth() {
-        fail("Test not written");
+        assertEquals("C", romanNumeralConverterService.getRomanHundredth("1"));
     }
     @Test
     void testGetRomanFiveHundredth() {
-        fail("Test not written");
+        assertEquals("D", romanNumeralConverterService.getRomanHundredth("5"));
     }
     @Test
     void testGetRomanHundredthBelowFiveHundred() {
-        fail("Test not written");
+        assertEquals("CC", romanNumeralConverterService.getRomanHundredth("2"));
+        assertEquals("CCC", romanNumeralConverterService.getRomanHundredth("3"));
+        assertEquals("CD", romanNumeralConverterService.getRomanHundredth("4"));
     }
     @Test
     void testGetRomanHundredthAboveFiveHundred() {
-        fail("Test not written");
+        assertEquals("DC", romanNumeralConverterService.getRomanHundredth("6"));
+        assertEquals("DCC", romanNumeralConverterService.getRomanHundredth("7"));
+        assertEquals("DCCC", romanNumeralConverterService.getRomanHundredth("8"));
+        assertEquals("CM", romanNumeralConverterService.getRomanHundredth("9"));
     }
     @Test
     void testGetRomanThousandth() {
