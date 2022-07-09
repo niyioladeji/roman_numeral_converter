@@ -9,10 +9,19 @@ public class RomanNumeralConverterService {
         if (unitCharacter==null) {
             throw new IllegalArgumentException ("Number can't be null");
         }
-        if (unitCharacter.length()!=1) {
-            throw new IllegalArgumentException ("Number length must be 1");
-        }
-        return null;
+        return  switch (unitCharacter) {
+            case "0"-> "";
+            case "1"-> "I";
+            case "2"->"II";
+            case "3"->"III";
+            case "4"->"IV";
+            case "5"-> "V";
+            case "6"-> "VI";
+            case "7"->"VII";
+            case "8"-> "VIII";
+            case "9"-> "IX";
+            default->throw new IllegalArgumentException ("Number length must be 0 - 9");
+        };
     }
     String getRomanTenth(String tens) {
         return null;

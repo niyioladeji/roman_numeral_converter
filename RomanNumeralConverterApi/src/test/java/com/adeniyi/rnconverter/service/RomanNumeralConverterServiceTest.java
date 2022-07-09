@@ -29,11 +29,11 @@ public class RomanNumeralConverterServiceTest {
         assertEquals("Number can't be null", exception.getMessage());
     }
     @Test
-    @DisplayName("test that length of input string is 1")
+    @DisplayName("test values outside 0 - 9")
     void testGetRomanUnitForNonSingularString() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getRomanUnit("11"));
-        assertEquals("Number length must be 1", exception.getMessage());
+        assertEquals("Number length must be 0 - 9", exception.getMessage());
     }
     @Test
     @DisplayName("0 (integer zero) should return empty string")
