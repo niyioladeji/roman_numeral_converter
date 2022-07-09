@@ -33,7 +33,7 @@ class RomanNumeralConverterServiceTest {
     void testGetRomanUnitForNonSingularString() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getRomanUnit("11"));
-        assertEquals("Number length must be 0 - 9", exception.getMessage());
+        assertEquals("Number value must be 0 - 9", exception.getMessage());
     }
     @Test
     @DisplayName("0 (integer zero) should return empty string")
@@ -74,7 +74,7 @@ class RomanNumeralConverterServiceTest {
         assertEquals("Number can't be null", exception.getMessage());
         Throwable exception1 = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getRomanTenth("11"));
-        assertEquals("Number length must be 0 - 9", exception1.getMessage());
+        assertEquals("Number value must be 0 - 9", exception1.getMessage());
     }
     @Test
     void testGetZeroRomanTenth() {
@@ -158,6 +158,5 @@ class RomanNumeralConverterServiceTest {
                 () -> romanNumeralConverterService.getRomanThousandth("4"));
         assertEquals("Number value must be 1 - 3", exception1.getMessage());
     }
-
 
 }

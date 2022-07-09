@@ -2,7 +2,8 @@ package com.adeniyi.rnconverter.service;
 
 public class RomanNumeralConverterService {
     private static final String NULL_NUMBER_EXCEPTION = "Number can't be null";
-    private static final String INVALID_NUMBER_EXCEPTION = "Number length must be 0 - 9";
+    private static final String INVALID_NUMBER_EXCEPTION = "Number value must be 0 - 9";
+    private static final String THOUSANDTH_INVALID_NUMBER_EXCEPTION = "Number value must be 1 - 3";
 
     public String getRomanNumeralForInteger(int unit) {
         return null;
@@ -63,6 +64,14 @@ public class RomanNumeralConverterService {
     }
 
     String getRomanThousandth(String thousandth) {
-        return null;
+        if (thousandth==null) {
+            throw new IllegalArgumentException (NULL_NUMBER_EXCEPTION);
+        }
+        return  switch (thousandth) {
+            case "1"-> "M";
+            case "2"-> "MM";
+            case "3"-> "MMM";
+            default->throw new IllegalArgumentException (THOUSANDTH_INVALID_NUMBER_EXCEPTION);
+        };
     }
 }
