@@ -23,7 +23,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Set project dir environment var
-      run: echo ::set-env name=PROJECT_DIR::"$GITHUB_WORKSPACE/RomanNumeralConverterApplication"
+      run: cd ./RomanNumeralConverterApplication
     - run: mvn --batch-mode --update-snapshots verify 
     - run: mkdir staging && cp target/*.jar staging
     - uses: actions/upload-artifact@v3
