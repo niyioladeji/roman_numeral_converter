@@ -38,33 +38,33 @@ public class RomanNumeralConverterServiceTest {
     @Test
     @DisplayName("0 (integer zero) should return empty string")
     void testGetRomanUnitForZero() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("0"),"");
+        assertEquals("", romanNumeralConverterService.getRomanUnit("0"));
     }
     @Test
     @DisplayName("1 (integer 1) should return I")
     void testGetRomanUnitForOne() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("1"),"I");
+        assertEquals("I", romanNumeralConverterService.getRomanUnit("1"));
     }
 
     @Test
     @DisplayName("5 (integer zero) should return V")
     void testGetRomanUnitForFive() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("5"),"V");
+        assertEquals("V", romanNumeralConverterService.getRomanUnit("5"));
     }
     @Test
     @DisplayName("2, 3, 4  should return II, III, IV respectively")
     void testGetRomanUnitForBelowFive() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("2"),"II");
-        assertEquals(romanNumeralConverterService.getRomanUnit("3"),"III");
-        assertEquals(romanNumeralConverterService.getRomanUnit("4"),"IV");
+        assertEquals("II", romanNumeralConverterService.getRomanUnit("2"));
+        assertEquals("III", romanNumeralConverterService.getRomanUnit("3"));
+        assertEquals("IV", romanNumeralConverterService.getRomanUnit("4"));
     }
     @Test
     @DisplayName("6, 7, 8 , 9 should return VI, VII, VIII, IX respectively")
     void testGetRomanUnitForAboveFive() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("6"),"VI");
-        assertEquals(romanNumeralConverterService.getRomanUnit("7"),"VII");
-        assertEquals(romanNumeralConverterService.getRomanUnit("8"),"VIII");
-        assertEquals(romanNumeralConverterService.getRomanUnit("9"),"IX");
+        assertEquals("VI", romanNumeralConverterService.getRomanUnit("6"));
+        assertEquals("VII", romanNumeralConverterService.getRomanUnit("7"));
+        assertEquals("VIII", romanNumeralConverterService.getRomanUnit("8"));
+        assertEquals("IX", romanNumeralConverterService.getRomanUnit("9"));
     }
     @Test
     @DisplayName("test values that is null OR outside of 0 - 9")
@@ -78,28 +78,28 @@ public class RomanNumeralConverterServiceTest {
     }
     @Test
     void testGetZeroRomanTenth() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("0"),"");
+        assertEquals("", romanNumeralConverterService.getRomanTenth("0"));
     }
     @Test
     void testGetRomanTenth() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("1"),"X");
+        assertEquals("X", romanNumeralConverterService.getRomanTenth("1"));
     }
     @Test
     void testGetRomanTenthFifty() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("5"),"L");
+        assertEquals("L", romanNumeralConverterService.getRomanTenth("5"));
     }
     @Test
     void testGetRomanTenthBelowFifty() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("2"),"XX");
-        assertEquals(romanNumeralConverterService.getRomanUnit("3"),"XXX");
-        assertEquals(romanNumeralConverterService.getRomanUnit("4"),"XL");
+        assertEquals("XX", romanNumeralConverterService.getRomanTenth("2"));
+        assertEquals("XXX", romanNumeralConverterService.getRomanTenth("3"));
+        assertEquals("XL", romanNumeralConverterService.getRomanTenth("4"));
     }
     @Test
     void testGetRomanTenthAboveFifty() {
-        assertEquals(romanNumeralConverterService.getRomanUnit("6"),"LX");
-        assertEquals(romanNumeralConverterService.getRomanUnit("7"),"LXX");
-        assertEquals(romanNumeralConverterService.getRomanUnit("8"),"LXXX");
-        assertEquals(romanNumeralConverterService.getRomanUnit("9"),"XC");
+        assertEquals("LX", romanNumeralConverterService.getRomanTenth("6"));
+        assertEquals("LXX", romanNumeralConverterService.getRomanTenth("7"));
+        assertEquals("LXXX", romanNumeralConverterService.getRomanTenth("8"));
+        assertEquals("XC", romanNumeralConverterService.getRomanTenth("9"));
     }
     @Test
     void testGetRomanHundredth() {
