@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class RomanNumeralConverterServiceTest {
+class RomanNumeralConverterServiceTest {
 
     private RomanNumeralConverterService romanNumeralConverterService;
 
@@ -138,19 +138,26 @@ public class RomanNumeralConverterServiceTest {
     }
     @Test
     void testGetRomanThousandth() {
-        fail("Test not written");
+        assertEquals("M", romanNumeralConverterService.getRomanThousandth("1"));
+    }
+    @Test
+    void testGetRomanTwoThousandth() {
+        assertEquals("MM", romanNumeralConverterService.getRomanThousandth("2"));
     }
     @Test
     void testGetRomanThreeThousandth() {
-        fail("Test not written");
+        assertEquals("MMM", romanNumeralConverterService.getRomanThousandth("3"));
     }
     @Test
-    void testGetRomanAboveThreeThousandth() {
-        fail("Test not written");
+    @DisplayName("test values that is null OR outside of 0 - 9")
+    void testInvalidGetRomanThousandth() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanThousandth(null));
+        assertEquals("Number can't be null", exception.getMessage());
+        Throwable exception1 = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanThousandth("4"));
+        assertEquals("Number value must be 1 - 3", exception1.getMessage());
     }
-    @Test
-    void testGetRomanBelowThreeThousandth() {
-        fail("Test not written");
-    }
+
 
 }
