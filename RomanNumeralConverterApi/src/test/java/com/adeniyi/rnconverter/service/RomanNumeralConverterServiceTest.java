@@ -76,5 +76,4 @@ public class RomanNumeralConverterServiceTest {
         fail("Test not written");
     }
 
-
 }
