@@ -18,9 +18,80 @@ class RomanNumeralConverterServiceTest {
     }
 
     @Test
-    void testGetRomanNumeralForInteger() {
-        fail("PlaceHolder test");
+    void testGetRomanNumeralForOutOfRangeInteger() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanNumeralForInteger(-1));
+        assertEquals("Number out of range. Can only convert 1 - 3000", exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanNumeralForInteger(0));
+        assertEquals("Number out of range. Can only convert 1 - 3000", exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanNumeralForInteger(-100));
+        assertEquals("Number out of range. Can only convert 1 - 3000", exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanNumeralForInteger(-100));
+        assertEquals("Number out of range. Can only convert 1 - 3000", exception.getMessage());
     }
+    @Test
+    void testGetRomanNumeralForIntegerEndsWithZero() {
+        assertEquals("X", romanNumeralConverterService.getRomanNumeralForInteger(10));
+        assertEquals("XX", romanNumeralConverterService.getRomanNumeralForInteger(20));
+        assertEquals("XXX", romanNumeralConverterService.getRomanNumeralForInteger(30));
+        assertEquals("XL", romanNumeralConverterService.getRomanNumeralForInteger(40));
+        assertEquals("L", romanNumeralConverterService.getRomanNumeralForInteger(50));
+        assertEquals("LX", romanNumeralConverterService.getRomanNumeralForInteger(60));
+        assertEquals("LXX", romanNumeralConverterService.getRomanNumeralForInteger(70));
+        assertEquals("LXXX", romanNumeralConverterService.getRomanNumeralForInteger(80));
+        assertEquals("XC", romanNumeralConverterService.getRomanNumeralForInteger(90));
+        assertEquals("C", romanNumeralConverterService.getRomanNumeralForInteger(100));
+        assertEquals("CXX", romanNumeralConverterService.getRomanNumeralForInteger(120));
+        assertEquals("CXL", romanNumeralConverterService.getRomanNumeralForInteger(140));
+        assertEquals("CCC", romanNumeralConverterService.getRomanNumeralForInteger(300));
+        assertEquals("CDL", romanNumeralConverterService.getRomanNumeralForInteger(450));
+        assertEquals("CDXL", romanNumeralConverterService.getRomanNumeralForInteger(440));
+        assertEquals("MMDCCCL", romanNumeralConverterService.getRomanNumeralForInteger(2850));
+        assertEquals("MMM", romanNumeralConverterService.getRomanNumeralForInteger(3000));
+    }
+    @Test
+    void testGetRomanNumeralForIntegerSingular() {
+        assertEquals("I", romanNumeralConverterService.getRomanNumeralForInteger(1));
+        assertEquals("II", romanNumeralConverterService.getRomanNumeralForInteger(2));
+        assertEquals("III", romanNumeralConverterService.getRomanNumeralForInteger(3));
+        assertEquals("IV", romanNumeralConverterService.getRomanNumeralForInteger(4));
+        assertEquals("V", romanNumeralConverterService.getRomanNumeralForInteger(5));
+        assertEquals("VI", romanNumeralConverterService.getRomanNumeralForInteger(6));
+        assertEquals("VII", romanNumeralConverterService.getRomanNumeralForInteger(7));
+        assertEquals("VIII", romanNumeralConverterService.getRomanNumeralForInteger(8));
+        assertEquals("IX", romanNumeralConverterService.getRomanNumeralForInteger(9));
+    }
+    @Test
+    void testGetRomanNumeralForIntegerTens() {
+        assertEquals("XI", romanNumeralConverterService.getRomanNumeralForInteger(11));
+        assertEquals("XXV", romanNumeralConverterService.getRomanNumeralForInteger(25));
+        assertEquals("LXVI", romanNumeralConverterService.getRomanNumeralForInteger(66));
+        assertEquals("LXXVIII", romanNumeralConverterService.getRomanNumeralForInteger(78));
+        assertEquals("LXXXV", romanNumeralConverterService.getRomanNumeralForInteger(85));
+        assertEquals("XCII", romanNumeralConverterService.getRomanNumeralForInteger(92));
+    }
+    @Test
+    void testGetRomanNumeralForIntegerHundreds() {
+        assertEquals("CXI", romanNumeralConverterService.getRomanNumeralForInteger(111));
+        assertEquals("CCXXV", romanNumeralConverterService.getRomanNumeralForInteger(225));
+        assertEquals("CDLXVI", romanNumeralConverterService.getRomanNumeralForInteger(466));
+        assertEquals("CMLXXVIII", romanNumeralConverterService.getRomanNumeralForInteger(978));
+        assertEquals("DCCLXXXV", romanNumeralConverterService.getRomanNumeralForInteger(785));
+        assertEquals("DCXCII", romanNumeralConverterService.getRomanNumeralForInteger(692));
+    }
+    @Test
+    void testGetRomanNumeralForIntegerThousands() {
+        assertEquals("MCXI", romanNumeralConverterService.getRomanNumeralForInteger(1111));
+        assertEquals("MCCXXV", romanNumeralConverterService.getRomanNumeralForInteger(1225));
+        assertEquals("MMCDLXVI", romanNumeralConverterService.getRomanNumeralForInteger(2466));
+        assertEquals("MMCMLXXVIII", romanNumeralConverterService.getRomanNumeralForInteger(2978));
+        assertEquals("MDCCLXXXV", romanNumeralConverterService.getRomanNumeralForInteger(1785));
+        assertEquals("MMDCXCII", romanNumeralConverterService.getRomanNumeralForInteger(2692));
+    }
+
     @Test
     @DisplayName("null should throw exception")
     void testGetRomanUnitForNull() {
@@ -135,6 +206,10 @@ class RomanNumeralConverterServiceTest {
         assertEquals("DCC", romanNumeralConverterService.getRomanHundredth("7"));
         assertEquals("DCCC", romanNumeralConverterService.getRomanHundredth("8"));
         assertEquals("CM", romanNumeralConverterService.getRomanHundredth("9"));
+    }
+    @Test
+    void testGetZeroRomanThousandth() {
+        assertEquals("", romanNumeralConverterService.getRomanThousandth("0"));
     }
     @Test
     void testGetRomanThousandth() {
