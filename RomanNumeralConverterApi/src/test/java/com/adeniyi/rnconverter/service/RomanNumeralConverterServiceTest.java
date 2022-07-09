@@ -67,20 +67,39 @@ public class RomanNumeralConverterServiceTest {
         assertEquals(romanNumeralConverterService.getRomanUnit("9"),"IX");
     }
     @Test
+    @DisplayName("test values that is null OR outside of 0 - 9")
+    void testInvalidGetRomanTenth() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanTenth(null));
+        assertEquals("Number can't be null", exception.getMessage());
+        Throwable exception1 = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getRomanTenth("11"));
+        assertEquals("Number length must be 0 - 9", exception1.getMessage());
+    }
+    @Test
+    void testGetZeroRomanTenth() {
+        assertEquals(romanNumeralConverterService.getRomanUnit("0"),"");
+    }
+    @Test
     void testGetRomanTenth() {
-        fail("Test not written");
+        assertEquals(romanNumeralConverterService.getRomanUnit("1"),"X");
     }
     @Test
     void testGetRomanTenthFifty() {
-        fail("Test not written");
+        assertEquals(romanNumeralConverterService.getRomanUnit("5"),"L");
     }
     @Test
     void testGetRomanTenthBelowFifty() {
-        fail("Test not written");
+        assertEquals(romanNumeralConverterService.getRomanUnit("2"),"XX");
+        assertEquals(romanNumeralConverterService.getRomanUnit("3"),"XXX");
+        assertEquals(romanNumeralConverterService.getRomanUnit("4"),"XL");
     }
     @Test
     void testGetRomanTenthAboveFifty() {
-        fail("Test not written");
+        assertEquals(romanNumeralConverterService.getRomanUnit("6"),"LX");
+        assertEquals(romanNumeralConverterService.getRomanUnit("7"),"LXX");
+        assertEquals(romanNumeralConverterService.getRomanUnit("8"),"LXXX");
+        assertEquals(romanNumeralConverterService.getRomanUnit("9"),"XC");
     }
     @Test
     void testGetRomanHundredth() {
