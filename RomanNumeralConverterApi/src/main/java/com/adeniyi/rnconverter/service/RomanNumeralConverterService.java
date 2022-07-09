@@ -5,17 +5,17 @@ public class RomanNumeralConverterService {
     public String getRomanNumeralForInteger(int inputNumber) {
         return null;
     }
-    String getRomanUnit(Character unitCharacter) {
+    String getRomanUnit(String unitCharacter) {
         return null;
     }
-    String getRomanTenth(Character tens) {
+    String getRomanTenth(String tens) {
         return null;
     }
-    String getRomanHundredth(Character hundredth) {
+    String getRomanHundredth(String hundredth) {
         return null;
     }
 
-    String getRomanThousandth(Character thousandth) {
+    String getRomanThousandth(String thousandth) {
         return null;
     }
 }

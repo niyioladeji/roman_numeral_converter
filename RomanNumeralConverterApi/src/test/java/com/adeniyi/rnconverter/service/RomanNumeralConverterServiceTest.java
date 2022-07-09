@@ -1,31 +1,57 @@
 package com.adeniyi.rnconverter.service;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class RomanNumeralConverterServiceTest {
+
+    private RomanNumeralConverterService romanNumeralConverterService;
+
+    @BeforeEach
+    void setUp() {
+        romanNumeralConverterService =
+                new RomanNumeralConverterService();
+    }
 
     @Test
     void testGetRomanNumeralForInteger() {
         fail("PlaceHolder test");
     }
     @Test
+    @DisplayName("0 (integer zero) should return empty string")
     void testGetRomanUnitForZero() {
-        fail("PlaceHolder test");
+        assertEquals(romanNumeralConverterService.getRomanUnit("0"),"");
     }
     @Test
+    @DisplayName("1 (integer 1) should return I")
+    void testGetRomanUnitForOne() {
+        assertEquals(romanNumeralConverterService.getRomanUnit("1"),"I");
+    }
+
+    @Test
+    @DisplayName("5 (integer zero) should return V")
     void testGetRomanUnitForFive() {
-        fail("PlaceHolder test");
+        assertEquals(romanNumeralConverterService.getRomanUnit("5"),"V");
     }
     @Test
+    @DisplayName("2, 3, 4  should return II, III, IV respectively")
     void testGetRomanUnitForBelowFive() {
-        fail("PlaceHolder test");
+        assertEquals(romanNumeralConverterService.getRomanUnit("2"),"II");
+        assertEquals(romanNumeralConverterService.getRomanUnit("3"),"III");
+        assertEquals(romanNumeralConverterService.getRomanUnit("4"),"IV");
     }
     @Test
+    @DisplayName("6, 7, 8 , 9 should return VI, VII, VIII, IX respectively")
     void testGetRomanUnitForAboveFive() {
-        fail("PlaceHolder test");
+        assertEquals(romanNumeralConverterService.getRomanUnit("6"),"VI");
+        assertEquals(romanNumeralConverterService.getRomanUnit("7"),"VII");
+        assertEquals(romanNumeralConverterService.getRomanUnit("8"),"VIII");
+        assertEquals(romanNumeralConverterService.getRomanUnit("9"),"IX");
     }
     @Test
     void testGetRomanTenth() {
