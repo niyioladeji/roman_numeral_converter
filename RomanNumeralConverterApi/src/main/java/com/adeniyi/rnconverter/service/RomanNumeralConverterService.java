@@ -24,7 +24,22 @@ public class RomanNumeralConverterService {
         };
     }
     String getRomanTenth(String tens) {
-        return null;
+        if (tens==null) {
+            throw new IllegalArgumentException ("Number can't be null");
+        }
+        return  switch (tens) {
+            case "0"-> "";
+            case "1"-> "X";
+            case "2"-> "XX";
+            case "3"-> "XXX";
+            case "4"-> "XL";
+            case "5"-> "L";
+            case "6"-> "LX";
+            case "7"-> "LXX";
+            case "8"-> "LXXX";
+            case "9"-> "XC";
+            default->throw new IllegalArgumentException ("Number length must be 0 - 9");
+        };
     }
     String getRomanHundredth(String hundredth) {
         return null;
