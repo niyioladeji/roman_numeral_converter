@@ -11,13 +11,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-	working-directory: ./RomanNumeralConverterApplication
-    
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -26,8 +21,9 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
         cache: maven
-    - run: mvn --batch-mode --update-snapshots verify 
-    - run: mkdir staging && cp target/*.jar staging
+    - run: ls -al RomanNumeralConverterApi
+    - run: cd RomanNumeralConverterApi && mvn --batch-mode --update-snapshots verify
+    - run: mkdir staging && cp RomanNumeralConverterApi/target/*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: Package
