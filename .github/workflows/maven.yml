@@ -23,7 +23,7 @@ jobs:
         cache: maven
     - run: ls -al RomanNumeralConverterApi
     - run: cd RomanNumeralConverterApi && mvn --batch-mode --update-snapshots verify
-    - run: mkdir staging && cp target/*.jar staging
+    - run: mkdir staging && cp RomanNumeralConverterApi/target/*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: Package
