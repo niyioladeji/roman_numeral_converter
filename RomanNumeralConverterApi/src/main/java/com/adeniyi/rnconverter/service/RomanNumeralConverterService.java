@@ -1,6 +1,9 @@
 package com.adeniyi.rnconverter.service;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
+@Service
 public class RomanNumeralConverterService {
     private static final String NULL_NUMBER_EXCEPTION = "Number can't be null";
     private static final String INVALID_NUMBER_EXCEPTION = "Number value must be 0 - 9";
