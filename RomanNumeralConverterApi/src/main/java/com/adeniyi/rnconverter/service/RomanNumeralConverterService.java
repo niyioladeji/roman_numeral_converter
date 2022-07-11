@@ -25,6 +25,7 @@ public class RomanNumeralConverterService {
     private static final String INVALID_NUMBER_EXCEPTION = "Number value must be 0 - 9";
     private static final String THOUSANDTH_INVALID_NUMBER_EXCEPTION = "Number value must be 1 - 3";
     private static final String INVALID_NUMBER_RANGE_EXCEPTION = "Number out of range. Can only convert 1 - 3000";
+    private static final String INVALID_ROMAN_NUMERAL_EXCEPTION = "Invalid Roman numeral. Cannot convert to integer";
 
     private static final Map<String,Integer> romanSymbolToIntegerMap =
             new HashMap<>();
@@ -47,7 +48,30 @@ public class RomanNumeralConverterService {
      *      For any invalid Roman numeral input parameter
      */
     public int getIntegerFromRomanNumeral(String romanNumeral)  throws IllegalArgumentException {
-        return -1;
+        int intValueOfRomanNumeral = 0;
+        String [] romanNumeralCharacters = romanNumeral.split("");
+        for (int pos=0; pos < romanNumeralCharacters.length; pos++ ) {
+            if (pos > 1 && (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])>
+                    romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-2]))) {
+                throw new IllegalArgumentException (INVALID_ROMAN_NUMERAL_EXCEPTION);
+            }
+
+            if (pos > 0 && (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])>
+                    romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1]))) {
+                intValueOfRomanNumeral +=
+                        (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])
+                        - (2*romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1])));
+            }
+            else{
+                intValueOfRomanNumeral += romanSymbolToIntegerMap.get(romanNumeralCharacters[pos]);
+            }
+        }
+        return intValueOfRomanNumeral;
+    }
+
+    boolean containsFourConsecutiveCharacters(String word) {
+
+        return false;
     }
 
     /**

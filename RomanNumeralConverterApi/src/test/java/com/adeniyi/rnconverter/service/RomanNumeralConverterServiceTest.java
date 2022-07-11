@@ -62,15 +62,31 @@ class RomanNumeralConverterServiceTest {
 
     @Test
     void testGetIntegerFromRomanNumeralThousandth() {
-        assertEquals(1114, romanNumeralConverterService.getIntegerFromRomanNumeral("CXIV"));
-        assertEquals(2320, romanNumeralConverterService.getIntegerFromRomanNumeral("CCCXX"));
-        assertEquals(1408, romanNumeralConverterService.getIntegerFromRomanNumeral("CDVIII"));
+        assertEquals(1114, romanNumeralConverterService.getIntegerFromRomanNumeral("MCXIV"));
+        assertEquals(2320, romanNumeralConverterService.getIntegerFromRomanNumeral("MMCCCXX"));
+        assertEquals(1408, romanNumeralConverterService.getIntegerFromRomanNumeral("MCDVIII"));
         assertEquals(3504, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMDIV"));
         assertEquals(3979, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMCMLXXIX"));
         assertEquals(3884, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMDCCCLXXXIV"));
         assertEquals(1994, romanNumeralConverterService.getIntegerFromRomanNumeral("MCMXCIV"));
         assertEquals(2769, romanNumeralConverterService.getIntegerFromRomanNumeral("MMDCCLXIX"));
     }
+
+    @Test
+    @DisplayName("Test case to check if string contains 4 consecutive characters")
+    void testIfStringContainsFourConsecutiveCharacters() {
+        assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDEF"));
+        assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDDEF"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("ABCDEFGH"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCC"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("ABCCCDDEF"));
+    }
+
 
     @Test
     void testGetRomanNumeralForOutOfRangeInteger() {
