@@ -48,6 +48,9 @@ public class RomanNumeralConverterService {
      *      For any invalid Roman numeral input parameter
      */
     public int getIntegerFromRomanNumeral(String romanNumeral)  throws IllegalArgumentException {
+        if (containsFourConsecutiveCharacters(romanNumeral)) {
+            throw new IllegalArgumentException (INVALID_ROMAN_NUMERAL_EXCEPTION);
+        }
         int intValueOfRomanNumeral = 0;
         String [] romanNumeralCharacters = romanNumeral.split("");
         for (int pos=0; pos < romanNumeralCharacters.length; pos++ ) {
@@ -70,7 +73,23 @@ public class RomanNumeralConverterService {
     }
 
     boolean containsFourConsecutiveCharacters(String word) {
+        String[] split = word.trim().split("");
+        if (split.length < 4) {
+            return false;
+        }
+        for (int i=0;i < split.length - 3;i++) {
+            String firstCharacter= split[i];
+            String secondCharacter=split[i+1];
+            String thirdCharacter=split[i+2];
+            String fourthCharacter=split[i+3];
+            if (firstCharacter.equals(secondCharacter) &&
+                    secondCharacter.equals(thirdCharacter) &&
+                    thirdCharacter.equals(fourthCharacter)
+            ) {
+                return true;
+            }
 
+        }
         return false;
     }
 

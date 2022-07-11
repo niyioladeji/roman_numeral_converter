@@ -76,6 +76,8 @@ class RomanNumeralConverterServiceTest {
     @DisplayName("Test case to check if string contains 4 consecutive characters")
     void testIfStringContainsFourConsecutiveCharacters() {
         assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("XXXX"));
+        assertTrue(
                 romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDEF"));
         assertTrue(
                 romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDDEF"));
