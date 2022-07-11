@@ -44,4 +44,20 @@ public class RomanNumeralConverterController {
                     HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping(path = "/getRomanNumeral/{input}", produces = "application/json")
+    public ResponseEntity getRomanNumeral(@PathVariable String input) {
+        try {
+            int romanNumeral = romanNumeralConverterService.getIntegerFromRomanNumeral(input);
+            RomanNumeralToArabicNumberDto dto = new RomanNumeralToArabicNumberDto();
+            dto.setArabicNumber(romanNumeral);
+            dto.setRomanNumeral(input);
+            return ResponseEntity.ok(dto);
+        }catch (Exception ex) {
+            return new ResponseEntity<>(
+                    ex.getMessage(),
+                    HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
