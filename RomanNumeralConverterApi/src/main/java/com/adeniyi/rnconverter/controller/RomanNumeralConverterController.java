@@ -31,7 +31,7 @@ public class RomanNumeralConverterController {
     private RomanNumeralConverterService  romanNumeralConverterService;
 
     @GetMapping(path = "/getRomanNumeral/{input}", produces = "application/json")
-    public ResponseEntity getIntegerFromRomanNumeral(@PathVariable int input) {
+    public ResponseEntity getRomanNumeral(@PathVariable int input) {
         try {
             String romanNumeral = romanNumeralConverterService.getRomanNumeralForInteger(input);
             RomanNumeralToArabicNumberDto dto = new RomanNumeralToArabicNumberDto();
