@@ -105,7 +105,10 @@ class RomanNumeralConverterControllerTest {
         responseEntity = rmConverterController.getRomanNumeral("CCCC");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
-        responseEntity = rmConverterController.getRomanNumeral("CCCXC");
+        responseEntity = rmConverterController.getRomanNumeral("CCCIC");
+        assertEquals(400, responseEntity.getStatusCodeValue());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
+        responseEntity = rmConverterController.getRomanNumeral("CCCLC");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
 

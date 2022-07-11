@@ -25,7 +25,10 @@ class RomanNumeralConverterServiceTest {
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("XXXX"));
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
-                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCXC"));
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCIC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCLC"));
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCC"));
