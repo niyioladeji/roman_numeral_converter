@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class RomanNumeralConverterServiceTest {
 
     private RomanNumeralConverterService romanNumeralConverterService;
+    static final String INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG =
+            "Invalid Roman numeral. Cannot convert to integer";
 
     @BeforeEach
     void setUp() {
@@ -21,19 +23,25 @@ class RomanNumeralConverterServiceTest {
     void testGetIntegerFromRomanNumeralOutOfRange() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("XXXX"));
-        assertEquals("Invalid Roman numeral. Cannot convert to integer", exception.getMessage());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCLC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCIC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCC"));
-        assertEquals("Invalid Roman numeral. Cannot convert to integer", exception.getMessage());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("XXXCC"));
-        assertEquals("Invalid Roman numeral. Cannot convert to integer", exception.getMessage());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("IIXX"));
-        assertEquals("Invalid Roman numeral. Cannot convert to integer", exception.getMessage());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
         exception = assertThrows(IllegalArgumentException.class,
                 () -> romanNumeralConverterService.getIntegerFromRomanNumeral("MMIIXX"));
-        assertEquals("Invalid Roman numeral. Cannot convert to integer", exception.getMessage());
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
     }
 
     @Test
