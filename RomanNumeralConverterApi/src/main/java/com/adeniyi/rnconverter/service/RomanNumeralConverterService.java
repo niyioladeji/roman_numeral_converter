@@ -3,7 +3,9 @@ package com.adeniyi.rnconverter.service;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,7 +31,10 @@ public class RomanNumeralConverterService {
 
     private static final Map<String,Integer> romanSymbolToIntegerMap =
             new HashMap<>();
+    private static final Map<String, Integer> romanSymbolIndexMap =
+            new HashMap<>();
     static {
+        //Populate romanSymbolToIntegerMap
         romanSymbolToIntegerMap.put("I", 1);
         romanSymbolToIntegerMap.put("V", 5);
         romanSymbolToIntegerMap.put("X", 10);
@@ -37,7 +42,19 @@ public class RomanNumeralConverterService {
         romanSymbolToIntegerMap.put("C", 100);
         romanSymbolToIntegerMap.put("D", 500);
         romanSymbolToIntegerMap.put("M", 1000);
+
+        //Populate romanSymbol Indices Map
+        romanSymbolIndexMap.put("I", 0);
+        romanSymbolIndexMap.put("V", 1);
+        romanSymbolIndexMap.put("X", 2);
+        romanSymbolIndexMap.put("L", 3);
+        romanSymbolIndexMap.put("C", 4);
+        romanSymbolIndexMap.put("D", 5);
+        romanSymbolIndexMap.put("M", 6);
+
     }
+
+    private static final List romanNumeralCannotBeSubtracted = Arrays.asList(new String[] {"V", "L" , "D"})  ;
 
     /**
      * @param romanNumeral
@@ -61,6 +78,11 @@ public class RomanNumeralConverterService {
 
             if (pos > 0 && (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])>
                     romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1]))) {
+                // Check if it is in an unsubtractable list
+
+
+                //Check that the lower number index is 1 below the current roman numeral character
+
                 intValueOfRomanNumeral +=
                         (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])
                         - (2*romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1])));
