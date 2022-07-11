@@ -31,8 +31,7 @@ public class RomanNumeralConverterService {
 
     private static final Map<String,Integer> romanSymbolToIntegerMap =
             new HashMap<>();
-    private static final Map<String, Integer> romanSymbolIndexMap =
-            new HashMap<>();
+
     static {
         //Populate romanSymbolToIntegerMap
         romanSymbolToIntegerMap.put("I", 1);
@@ -42,16 +41,6 @@ public class RomanNumeralConverterService {
         romanSymbolToIntegerMap.put("C", 100);
         romanSymbolToIntegerMap.put("D", 500);
         romanSymbolToIntegerMap.put("M", 1000);
-
-        //Populate romanSymbol Indices Map
-        romanSymbolIndexMap.put("I", 0);
-        romanSymbolIndexMap.put("V", 1);
-        romanSymbolIndexMap.put("X", 2);
-        romanSymbolIndexMap.put("L", 3);
-        romanSymbolIndexMap.put("C", 4);
-        romanSymbolIndexMap.put("D", 5);
-        romanSymbolIndexMap.put("M", 6);
-
     }
 
     private static final List romanNumeralCannotBeSubtracted = Arrays.asList(new String[] {"V", "L" , "D"})  ;
