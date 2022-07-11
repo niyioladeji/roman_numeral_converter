@@ -31,7 +31,7 @@ public class RomanNumeralConverterController {
     private RomanNumeralConverterService  romanNumeralConverterService;
 
     @GetMapping(path = "/getRomanNumeral/{input}", produces = "application/json")
-    public ResponseEntity getRomanNumeral(@PathVariable int input) {
+    public ResponseEntity getIntegerFromRomanNumeral(@PathVariable int input) {
         try {
             String romanNumeral = romanNumeralConverterService.getRomanNumeralForInteger(input);
             RomanNumeralToArabicNumberDto dto = new RomanNumeralToArabicNumberDto();
@@ -46,7 +46,7 @@ public class RomanNumeralConverterController {
     }
 
     @GetMapping(path = "/getInteger/{input}", produces = "application/json")
-    public ResponseEntity getRomanNumeral(@PathVariable String input) {
+    public ResponseEntity getIntegerFromRomanNumeral(@PathVariable String input) {
         try {
             int romanNumeral = romanNumeralConverterService.getIntegerFromRomanNumeral(input);
             RomanNumeralToArabicNumberDto dto = new RomanNumeralToArabicNumberDto();
