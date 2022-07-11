@@ -3,22 +3,6 @@ package com.adeniyi.rnconverter.service;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- *
- * The RomanNumeralConverterService provides simple interfaces for converting
- * integer to and from roman numeral number notations.
- *
- * Suitable for
- *      -   converting integers between 1 - 3000 to roman numeral string
- *      -   converting any valid roman numeral string to an integer
- *
- * @author  Adeniyi Oladeji
- * @version 0.0.1
- * @since   2022-07-11
- */
 @Service
 public class RomanNumeralConverterService {
     private static final String NULL_NUMBER_EXCEPTION = "Number can't be null";
@@ -26,40 +10,7 @@ public class RomanNumeralConverterService {
     private static final String THOUSANDTH_INVALID_NUMBER_EXCEPTION = "Number value must be 1 - 3";
     private static final String INVALID_NUMBER_RANGE_EXCEPTION = "Number out of range. Can only convert 1 - 3000";
 
-    private static final Map<String,Integer> romanSymbolToIntegerMap =
-            new HashMap<>();
-    static {
-        romanSymbolToIntegerMap.put("I", 1);
-        romanSymbolToIntegerMap.put("V", 5);
-        romanSymbolToIntegerMap.put("X", 10);
-        romanSymbolToIntegerMap.put("L", 50);
-        romanSymbolToIntegerMap.put("C", 100);
-        romanSymbolToIntegerMap.put("D", 500);
-        romanSymbolToIntegerMap.put("M", 1000);
-    }
-
-    /**
-     * @param romanNumeral
-     *      Roman Numeral to be converted
-     * @return
-     *      Integer value equivalent
-     * @throws IllegalArgumentException
-     *      For any invalid Roman numeral input parameter
-     */
-    public int getIntegerFromRomanNumeral(String romanNumeral)  throws IllegalArgumentException {
-        return -1;
-    }
-
-    /**
-     * Converts any integer between 1 and 3000 to roman numeral
-     * @param unit
-     *      Integer unit to be converted
-     * @return
-     *      Roman numeral equivalent
-     * @throws IllegalArgumentException
-     *      For any integer input parameter not between 1 and 3000
-     */
-    public String getRomanNumeralForInteger(int unit) throws IllegalArgumentException {
+    public String getRomanNumeralForInteger(int unit) {
         if (unit < 1 || unit > 3000) {
             throw new IllegalArgumentException (INVALID_NUMBER_RANGE_EXCEPTION);
         }
@@ -133,7 +84,7 @@ public class RomanNumeralConverterService {
         };
     }
 
-    String getRomanThousandth(String thousandth) {
+    public String getRomanThousandth(String thousandth) {
         if (thousandth==null) {
             throw new IllegalArgumentException (NULL_NUMBER_EXCEPTION);
         }

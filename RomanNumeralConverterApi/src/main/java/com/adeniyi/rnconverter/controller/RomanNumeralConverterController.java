@@ -10,19 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * The RomanNumeralConverterController provides simple restful API for converting
- * integer to and from roman numeral number notations.
- *
- * Suitable for
- *      -   converting integers between 1 - 3000 to roman numeral string
- *      -   converting any valid roman numeral string to an integer
- *
- * @author  Adeniyi Oladeji
- * @version 0.0.1
- * @since   2022-07-11
- */
 @RestController
 @RequestMapping("api/rnconverter")
 public class RomanNumeralConverterController {
