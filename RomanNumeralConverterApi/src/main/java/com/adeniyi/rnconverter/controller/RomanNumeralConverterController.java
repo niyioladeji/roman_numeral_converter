@@ -45,7 +45,7 @@ public class RomanNumeralConverterController {
         }
     }
 
-    @GetMapping(path = "/getRomanNumeral/{input}", produces = "application/json")
+    @GetMapping(path = "/getInteger/{input}", produces = "application/json")
     public ResponseEntity getRomanNumeral(@PathVariable String input) {
         try {
             int romanNumeral = romanNumeralConverterService.getIntegerFromRomanNumeral(input);
