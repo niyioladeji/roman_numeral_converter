@@ -10,12 +10,93 @@ import static org.junit.jupiter.api.Assertions.*;
 class RomanNumeralConverterServiceTest {
 
     private RomanNumeralConverterService romanNumeralConverterService;
+    static final String INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG =
+            "Invalid Roman numeral. Cannot convert to integer";
 
     @BeforeEach
     void setUp() {
         romanNumeralConverterService =
                 new RomanNumeralConverterService();
     }
+
+    @Test
+    void testGetIntegerFromRomanNumeralOutOfRange() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("XXXX"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCLC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCIC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("CCCC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("XXXCC"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("IIXX"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+        exception = assertThrows(IllegalArgumentException.class,
+                () -> romanNumeralConverterService.getIntegerFromRomanNumeral("MMIIXX"));
+        assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, exception.getMessage());
+    }
+
+    @Test
+    void testGetIntegerFromRomanNumeralSmall() {
+        assertEquals(14, romanNumeralConverterService.getIntegerFromRomanNumeral("XIV"));
+        assertEquals(20, romanNumeralConverterService.getIntegerFromRomanNumeral("XX"));
+        assertEquals(8, romanNumeralConverterService.getIntegerFromRomanNumeral("VIII"));
+        assertEquals(4, romanNumeralConverterService.getIntegerFromRomanNumeral("IV"));
+        assertEquals(79, romanNumeralConverterService.getIntegerFromRomanNumeral("LXXIX"));
+        assertEquals(84, romanNumeralConverterService.getIntegerFromRomanNumeral("LXXXIV"));
+        assertEquals(94, romanNumeralConverterService.getIntegerFromRomanNumeral("XCIV"));
+        assertEquals(69, romanNumeralConverterService.getIntegerFromRomanNumeral("LXIX"));
+    }
+
+    @Test
+    void testGetIntegerFromRomanNumeralHundredth() {
+        assertEquals(114, romanNumeralConverterService.getIntegerFromRomanNumeral("CXIV"));
+        assertEquals(320, romanNumeralConverterService.getIntegerFromRomanNumeral("CCCXX"));
+        assertEquals(408, romanNumeralConverterService.getIntegerFromRomanNumeral("CDVIII"));
+        assertEquals(504, romanNumeralConverterService.getIntegerFromRomanNumeral("DIV"));
+        assertEquals(979, romanNumeralConverterService.getIntegerFromRomanNumeral("CMLXXIX"));
+        assertEquals(884, romanNumeralConverterService.getIntegerFromRomanNumeral("DCCCLXXXIV"));
+        assertEquals(994, romanNumeralConverterService.getIntegerFromRomanNumeral("CMXCIV"));
+        assertEquals(769, romanNumeralConverterService.getIntegerFromRomanNumeral("DCCLXIX"));
+    }
+
+    @Test
+    void testGetIntegerFromRomanNumeralThousandth() {
+        assertEquals(1114, romanNumeralConverterService.getIntegerFromRomanNumeral("MCXIV"));
+        assertEquals(2320, romanNumeralConverterService.getIntegerFromRomanNumeral("MMCCCXX"));
+        assertEquals(1408, romanNumeralConverterService.getIntegerFromRomanNumeral("MCDVIII"));
+        assertEquals(3504, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMDIV"));
+        assertEquals(3979, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMCMLXXIX"));
+        assertEquals(3884, romanNumeralConverterService.getIntegerFromRomanNumeral("MMMDCCCLXXXIV"));
+        assertEquals(1994, romanNumeralConverterService.getIntegerFromRomanNumeral("MCMXCIV"));
+        assertEquals(2769, romanNumeralConverterService.getIntegerFromRomanNumeral("MMDCCLXIX"));
+    }
+
+    @Test
+    @DisplayName("Test case to check if string contains 4 consecutive characters")
+    void testIfStringContainsFourConsecutiveCharacters() {
+        assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("XXXX"));
+        assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDEF"));
+        assertTrue(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCDDDDDEF"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("ABCDEFGH"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("CCC"));
+        assertFalse(
+                romanNumeralConverterService.containsFourConsecutiveCharacters("ABCCCDDEF"));
+    }
+
 
     @Test
     void testGetRomanNumeralForOutOfRangeInteger() {
