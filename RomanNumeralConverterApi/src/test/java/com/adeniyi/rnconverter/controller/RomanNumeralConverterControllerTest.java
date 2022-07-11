@@ -2,18 +2,15 @@ package com.adeniyi.rnconverter.controller;
 
 import com.adeniyi.rnconverter.dto.RomanNumeralToArabicNumberDto;
 import com.adeniyi.rnconverter.service.RomanNumeralConverterService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RomanNumeralConverterControllerTest {
@@ -99,33 +96,33 @@ class RomanNumeralConverterControllerTest {
 
     @Test
     void testInvalidGetIntegerRomanNumeral() {
-        ResponseEntity responseEntity = rmConverterController.getRomanNumeral("IIXX");
+        ResponseEntity responseEntity = rmConverterController.getIntegerFromRomanNumeral("IIXX");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
-        responseEntity = rmConverterController.getRomanNumeral("CCCC");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("CCCC");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
-        responseEntity = rmConverterController.getRomanNumeral("CCCLC");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("CCCLC");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
-        responseEntity = rmConverterController.getRomanNumeral("CCCIC");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("CCCIC");
         assertEquals(400, responseEntity.getStatusCodeValue());
         assertEquals(INVALID_ROMAN_NUMERAL_TO_INTEGER_MSG, responseEntity.getBody().toString());
     }
 
     @Test
     void testGetIntegerForSmallRomanNumeral() {
-        ResponseEntity responseEntity = rmConverterController.getRomanNumeral("X");
+        ResponseEntity responseEntity = rmConverterController.getIntegerFromRomanNumeral("X");
         assertEquals(200, responseEntity.getStatusCodeValue());
         RomanNumeralToArabicNumberDto romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(10, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("VII");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("VII");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
         assertEquals(7, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("LXV");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("LXV");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
@@ -134,17 +131,17 @@ class RomanNumeralConverterControllerTest {
 
     @Test
     void testGetIntegerForRomanNumeralForHundredths() {
-        ResponseEntity responseEntity = rmConverterController.getRomanNumeral("C");
+        ResponseEntity responseEntity = rmConverterController.getIntegerFromRomanNumeral("C");
         assertEquals(200, responseEntity.getStatusCodeValue());
         RomanNumeralToArabicNumberDto romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(100, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("CCVII");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("CCVII");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
         assertEquals(207, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("DCCCLXV");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("DCCCLXV");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
@@ -153,17 +150,17 @@ class RomanNumeralConverterControllerTest {
 
     @Test
     void testGetIntegerForRomanNumeralForThousandths() {
-        ResponseEntity responseEntity = rmConverterController.getRomanNumeral("MCX");
+        ResponseEntity responseEntity = rmConverterController.getIntegerFromRomanNumeral("MCX");
         assertEquals(200, responseEntity.getStatusCodeValue());
         RomanNumeralToArabicNumberDto romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(1110, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("MMCCVII");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("MMCCVII");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
         assertEquals(2207, romanNumeralToArabicNumberDto.getArabicNumber());
-        responseEntity = rmConverterController.getRomanNumeral("MDCCCLXV");
+        responseEntity = rmConverterController.getIntegerFromRomanNumeral("MDCCCLXV");
         romanNumeralToArabicNumberDto
                 = (RomanNumeralToArabicNumberDto)responseEntity.getBody();
         assertEquals(200, responseEntity.getStatusCodeValue());
