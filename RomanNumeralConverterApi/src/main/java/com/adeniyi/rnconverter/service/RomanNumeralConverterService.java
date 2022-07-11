@@ -79,10 +79,19 @@ public class RomanNumeralConverterService {
             if (pos > 0 && (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])>
                     romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1]))) {
                 // Check if it is in an unsubtractable list
-
+                if (romanNumeralCannotBeSubtracted.contains(romanNumeralCharacters[pos-1])) {
+                    throw new IllegalArgumentException (INVALID_ROMAN_NUMERAL_EXCEPTION);
+                }
 
                 //Check that the lower number index is 1 below the current roman numeral character
+                int valueToBeSubtracted =  romanSymbolToIntegerMap.get(romanNumeralCharacters[pos]) / 10;
+                if (romanNumeralCannotBeSubtracted.contains(romanNumeralCharacters[pos])) {
+                    valueToBeSubtracted  =  romanSymbolToIntegerMap.get(romanNumeralCharacters[pos]) / 5;
+                }
 
+                if (valueToBeSubtracted != romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1])) {
+                    throw new IllegalArgumentException (INVALID_ROMAN_NUMERAL_EXCEPTION);
+                }
                 intValueOfRomanNumeral +=
                         (romanSymbolToIntegerMap.get(romanNumeralCharacters[pos])
                         - (2*romanSymbolToIntegerMap.get(romanNumeralCharacters[pos-1])));
